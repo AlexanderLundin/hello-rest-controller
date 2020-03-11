@@ -2,16 +2,20 @@ package com.galvanize.controllers;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.galvanize.entities.Person;
+import com.galvanize.repository.PersonRepository;
+import jdk.jfr.internal.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
 @RestController
 public class HelloRestController {
     private long id = 0L;
+
+    @Autowired
+    private PersonRepository personRepository;
 
     @GetMapping("/hello")
     public Person hello(@RequestParam (required = false) String name,
@@ -23,5 +27,10 @@ public class HelloRestController {
         Person person = new Person(id, name, email, birthDate);
         id += 1L;
         return person;
+    }
+
+    @PostMapping("/person")
+    public Person helloPerson(@RequestBody Person person){
+        return personRepository.save(person);
     }
 }

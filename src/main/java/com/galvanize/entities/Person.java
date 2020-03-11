@@ -1,6 +1,7 @@
 package com.galvanize.entities;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Person {
     private Long id;
@@ -18,6 +19,12 @@ public class Person {
     public Person() {
     }
 
+    public int getAge(){
+        LocalDate today = LocalDate.now();
+        Period period = Period.between(birthDate, today);
+        int age = period.getYears();
+        return age;
+    }
     public Long getId() {
         return this.id;
     }

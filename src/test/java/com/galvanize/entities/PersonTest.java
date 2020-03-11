@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,7 +24,8 @@ class PersonTest {
         id = 258L;
         name = "Storm trooper";
         email = "youknowit@yahoo.com";
-        birthDate = LocalDate.now();
+        birthDate = LocalDate.of(2017, 1, 15);
+
     }
 
     @Test
@@ -40,6 +42,10 @@ class PersonTest {
         assertEquals(email, actualEmail);
         LocalDate actualBirthDate = person.getBirthDate();
         assertEquals(birthDate, actualBirthDate);
+        LocalDate today = LocalDate.now();
+        int expectedAge = Period.between(birthDate, today).getYears();
+        int actualAge = person.getAge();
+        assertEquals(expectedAge, actualAge);
     }
 
 

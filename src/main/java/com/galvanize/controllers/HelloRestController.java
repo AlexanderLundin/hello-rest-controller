@@ -30,10 +30,18 @@ public class HelloRestController {
         return person;
     }
 
+
+    //CREATE
+
+
     @PostMapping("/person")
     public Person helloPerson(@RequestBody Person person){
         return personRepository.save(person);
     }
+
+
+    //READ
+
 
     @GetMapping("/person")
     public ArrayList<Person> getPersonList(){
@@ -45,10 +53,22 @@ public class HelloRestController {
         return personRepository.findById(id);
     }
 
+
     //UPDATE
+
+
     @PatchMapping("/person/{id}")
     public Person updatePerson(@RequestParam String email, @PathVariable Long id){
         return personRepository.updateEmail(id, email);
+    }
+
+
+    // DELETE
+
+
+    @DeleteMapping("person/{id}")
+    public void deletePerson( @PathVariable Long id){
+        personRepository.deletePerson(id);
     }
 
 }

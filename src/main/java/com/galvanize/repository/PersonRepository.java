@@ -5,23 +5,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 @Repository
 public class PersonRepository {
     ArrayList<Person> personList = new ArrayList<>();
+
+    //CREATE
+
 
     public Person save(Person person) {
         personList.add(person);
         return person;
     }
 
+
+    //READ
+
+
     public ArrayList<Person> getPersonList() {
         return this.personList;
     }
 
-    public void updatePersonInList (int index, Person person){
-        personList.set(index, person);
-    }
     public Person findById(Long id) {
         for (Person person : personList){
             if(person.getId() == id ) {
@@ -38,6 +43,13 @@ public class PersonRepository {
         return null;
     }
 
+    //UPDATE
+
+
+    public void updatePersonInList (int index, Person person){
+        personList.set(index, person);
+    }
+
     public Person updateEmail(Long id, String email) {
         int index;
         for (Person person : personList){
@@ -51,11 +63,18 @@ public class PersonRepository {
         return null;
     }
 
-    //CREATE
-
-    //READ
-
-    //UPDATE
 
     //DELETE
+
+
+    public void deletePerson(Long id) {
+        int index;
+        // have to use iterator pattern because we can't explicitly modify the personList as we iterate though
+        for (Iterator<Person> it = personList.iterator(); it.hasNext();) {
+            Person person = it.next();
+            if(person.getId() == id ) {
+                it.remove();
+            }
+        }
+    }
 }

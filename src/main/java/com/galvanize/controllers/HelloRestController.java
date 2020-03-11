@@ -35,8 +35,20 @@ public class HelloRestController {
         return personRepository.save(person);
     }
 
-    @GetMapping("/persons")
+    @GetMapping("/person")
     public ArrayList<Person> getPersonList(){
         return personRepository.getPersonList();
     }
+
+    @GetMapping("/person/{id}")
+    public Person getPerson(@PathVariable Long id){
+        return personRepository.findById(id);
+    }
+
+    //UPDATE
+    @PatchMapping("/person/{id}")
+    public Person updatePerson(@RequestParam String email, @PathVariable Long id){
+        return personRepository.updateEmail(id, email);
+    }
+
 }

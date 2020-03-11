@@ -3,10 +3,10 @@ package com.galvanize.entities;
 import java.time.LocalDate;
 
 public class Person {
-    Long id;
-    String name;
-    String email;
-    LocalDate birthDate;
+    private Long id;
+    private String name;
+    private String email;
+    private LocalDate birthDate;
 
     public Person(Long id, String name, String email, LocalDate birthDate) {
         this.id = id;
@@ -15,20 +15,23 @@ public class Person {
         this.birthDate = birthDate;
     }
 
+    public Person() {
+    }
+
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public LocalDate getBirthDate() {
-        return birthDate;
+        return this.birthDate;
     }
 
     public void setId(Long id) {

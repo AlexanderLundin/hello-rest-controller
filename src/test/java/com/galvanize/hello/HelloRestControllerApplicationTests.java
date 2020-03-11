@@ -1,4 +1,4 @@
-package com.example.hellorestcontroller;
+package com.galvanize.hello;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

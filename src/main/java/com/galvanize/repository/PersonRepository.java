@@ -14,4 +14,16 @@ public class PersonRepository {
         personList.add(person);
         return person;
     }
+
+    public ArrayList<Person> getPersonList() {
+        return this.personList;
+    }
+
+    //CREATE
+
+    //READ
+
+    //UPDATE
+
+    //DELETE
 }

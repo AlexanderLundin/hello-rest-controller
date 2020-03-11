@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @RestController
 public class HelloRestController {
@@ -32,5 +33,10 @@ public class HelloRestController {
     @PostMapping("/person")
     public Person helloPerson(@RequestBody Person person){
         return personRepository.save(person);
+    }
+
+    @GetMapping("/persons")
+    public ArrayList<Person> getPersonList(){
+        return personRepository.getPersonList();
     }
 }

@@ -1,4 +1,4 @@
-package com.galvanize.hello.controllers;
+package com.galvanize.controllers;
 
 public class HelloRestControllerTest {
 }

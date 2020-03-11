@@ -1,5 +1,7 @@
 package com.galvanize.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -7,6 +9,7 @@ public class Person {
     private Long id;
     private String name;
     private String email;
+    @JsonFormat(pattern = "MM/dd/yyyy")
     private LocalDate birthDate;
 
     public Person(Long id, String name, String email, LocalDate birthDate) {
@@ -37,6 +40,7 @@ public class Person {
         return this.email;
     }
 
+    @JsonFormat(pattern = "MM/dd/yyyy")
     public LocalDate getBirthDate() {
         return this.birthDate;
     }
@@ -53,6 +57,7 @@ public class Person {
         this.email = email;
     }
 
+    @JsonFormat(pattern = "MM/dd/yyyy")
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }

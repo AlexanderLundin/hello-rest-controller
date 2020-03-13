@@ -1,6 +1,7 @@
 package com.galvanize.controllers;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.galvanize.entities.Person;
 import com.galvanize.repository.PersonRepository;
 import jdk.jfr.internal.Repository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +17,7 @@ import java.util.Date;
 @RestController
 public class HelloRestController {
     private long id = 0L;
+    ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     private PersonRepository personRepository;
@@ -78,5 +81,11 @@ public class HelloRestController {
         Person person = new Person(id, name, email, birthDate);
         id += 1L;
         return person;
+    }
+
+
+    @PostMapping("/hello")
+    public Person helloRegistrationPost(@RequestBody Person person) throws IOException {
+        return personRepository.save(person);
     }
 }

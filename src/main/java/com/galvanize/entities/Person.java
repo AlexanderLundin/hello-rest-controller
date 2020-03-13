@@ -1,6 +1,8 @@
 package com.galvanize.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -11,8 +13,18 @@ public class Person {
     private Long id;
     private String name;
     private String email;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "MM/dd/yyyy")
     private LocalDate birthDate;
+
+    public Person() {
+    }
+
+    public Person(String name, String email, LocalDate birthDate) {
+        this.name = name;
+        this.email = email;
+        this.birthDate = birthDate;
+    }
 
     public Person(Long id, String name, String email, LocalDate birthDate) {
         this.id = id;
@@ -21,8 +33,12 @@ public class Person {
         this.birthDate = birthDate;
     }
 
-    public Person() {
+    public Person(Long id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
     }
+
 
     public Person(long id, String name, String email, Date birthDate) {
         LocalDate localBirthDate = convertToLocalDateViaInstant(birthDate);
@@ -39,6 +55,7 @@ public class Person {
                 .toLocalDate();
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public int getAge(){
         LocalDate today = LocalDate.now();
         Period period = Period.between(birthDate, today);
@@ -57,6 +74,7 @@ public class Person {
         return this.email;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonFormat(pattern = "MM/dd/yyyy")
     public LocalDate getBirthDate() {
         return this.birthDate;

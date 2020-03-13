@@ -13,6 +13,13 @@ repositories {
 }
 
 dependencies {
+	// added jackson dependency
+	compile (
+			[group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.3'],
+			[group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.10.3'],
+			[group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.3']
+	)
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

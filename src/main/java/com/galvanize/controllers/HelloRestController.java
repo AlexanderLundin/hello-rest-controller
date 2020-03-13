@@ -19,17 +19,17 @@ public class HelloRestController {
     @Autowired
     private PersonRepository personRepository;
 
-    @GetMapping("/hello")
-    public Person hello(@RequestParam (required = false) String name,
-                        @RequestParam (required = false) String email,
-                        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthDate
-                        ){
-
-        //LocalDate birthDate = new LocalDate();
-        Person person = new Person(id, name, email, birthDate);
-        id += 1L;
-        return person;
-    }
+//    @GetMapping("/hello")
+//    public Person hello(@RequestParam (required = false) String name,
+//                        @RequestParam (required = false) String email,
+//                        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthDate
+//                        ){
+//
+//        //LocalDate birthDate = new LocalDate();
+//        Person person = new Person(id, name, email, birthDate);
+//        id += 1L;
+//        return person;
+//    }
 
 
     //CREATE
@@ -72,6 +72,8 @@ public class HelloRestController {
         personRepository.deletePerson(id);
     }
 
+
+    @GetMapping("/hello")
     public Person helloRegistration(String name, Date birthDate, String email) {
         Person person = new Person(id, name, email, birthDate);
         id += 1L;

@@ -32,6 +32,7 @@ public class Person {
         this.birthDate = localBirthDate;
     }
 
+    @JsonFormat(pattern = "MM/dd/yyyy")
     public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())

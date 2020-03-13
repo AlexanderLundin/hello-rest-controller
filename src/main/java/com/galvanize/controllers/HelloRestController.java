@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 @RestController
 public class HelloRestController {
@@ -71,4 +72,9 @@ public class HelloRestController {
         personRepository.deletePerson(id);
     }
 
+    public Person helloRegistration(String name, Date birthDate, String email) {
+        Person person = new Person(id, name, email, birthDate);
+        id += 1L;
+        return person;
+    }
 }

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class Person {
     private Long id;
@@ -20,6 +22,20 @@ public class Person {
     }
 
     public Person() {
+    }
+
+    public Person(long id, String name, String email, Date birthDate) {
+        LocalDate localBirthDate = convertToLocalDateViaInstant(birthDate);
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.birthDate = localBirthDate;
+    }
+
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 
     public int getAge(){
